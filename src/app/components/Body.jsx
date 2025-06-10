@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Body() {
   return (
-    <main className="container mx-auto py-10 px-4">
+    <main className="container mx-auto bg-gray-800 py-10 px-4">
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Link href="/scores">
           <div className="p-6 bg-blue-500 text-white rounded-lg shadow cursor-pointer hover:bg-blue-600 transition">
