@@ -1,8 +1,26 @@
-const teamColors = {
-  "FC Dallas": "bg-red-600",
-  "Austin FC": "bg-green-600",
-  "Houston Dynamo FC": "bg-blue-600",
-};
+// const teamColors = {
+//   "FC Dallas": "bg-red-600",
+//   "Austin FC": "bg-green-600",
+//   "Houston Dynamo FC": "bg-blue-600",
+// };
+
+function getMatchColor(match) {
+  const home = match.teams.home.name.toLowerCase();
+  const away = match.teams.away.name.toLowerCase();
+
+  const isDallas = home.includes("dallas") || away.includes("dallas");
+  const isAustin = home.includes("austin") || away.includes("austin");
+  const isHouston = home.includes("houston") || away.includes("houston");
+
+  const texasTeams = [isDallas, isAustin, isHouston].filter(Boolean).length;
+
+  if (texasTeams > 1) return "bg-gray-700 text-white"; // Two Texas teams
+  if (isDallas) return "bg-red-700 text-white";
+  if (isAustin) return "bg-green-600 text-white";
+  if (isHouston) return "bg-orange-500 text-white";
+
+  return "bg-gray-800 text-white"; // Default
+}
 
 export default function LiveScores({ matches = [] }) {
   return (
@@ -11,18 +29,13 @@ export default function LiveScores({ matches = [] }) {
         MLS Texas Team Scores
       </h2>
       <ul className="space-y-4">
-        {matches.slice(0, 50).map((match, index) => {
-          const team =
-            ["FC Dallas", "Austin", "Houston Dynamo"].find(
-              (t) => t === match.teams.home.name || t === match.teams.away.name
-            ) || "default";
-
-          const bgColor = teamColors[team] || "bg-gray-700";
+        {matches.slice(0, 50).map((match) => {
+          const bgColor = getMatchColor(match); // ✅ use the helper function here
 
           return (
             <li
               key={match.fixture.id}
-              className={`p-4 ${bgColor} text-white rounded-lg shadow`}
+              className={`p-4 ${bgColor} rounded-lg shadow`}
             >
               <div className="flex justify-between items-center">
                 <span className="font-semibold">{match.teams.home.name}</span>

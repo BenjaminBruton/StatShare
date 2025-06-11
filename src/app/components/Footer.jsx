@@ -11,7 +11,7 @@ export default function Footer() {
         <div>
           <h4 className="font-semibold">Careers</h4>
           <p>
-            <a href="#" className="hover:underline">
+            <a href="/careers" className="hover:underline">
               Open Positions
             </a>
           </p>

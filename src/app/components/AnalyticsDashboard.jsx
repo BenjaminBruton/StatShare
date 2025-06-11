@@ -12,7 +12,7 @@ import {
 
 export default function AnalyticsDashboard({ data }) {
   return (
-    <div className="bg-gray-900 min-h-screen p-8 space-y-12">
+    <div className="bg-gray-700 min-h-screen p-8 space-y-12">
       <h2 className="text-3xl font-bold text-white">MLS Analytics Dashboard</h2>
 
       {/* Goals For vs Goals Against */}
